@@ -1,28 +1,31 @@
 
 const mqtt = require("mqtt");
 let client = mqtt.connect("ws://localhost:9001"); // Broke ports: 9001, 1883
-// const subscriber = mqtt.connect("ws://localhost:1883"); // Broke ports: 9001, 1883
-let lightState = false; // Light
 
-// Publisher
+let enviar = false;
 
-client.on("connect", () => {
-    console.log("Connected to MQTT Broker");
-    client.subscribe("sensor/light-manager");
-});
+client
+    .on("connect", () => {
+        console.log("Connected to MQTT Broker: sensor-luz");
+        client.subscribe("sensor/light-manager");
+    })
+    .on("message", (topic, payload) => {
+        let state = new String(payload);
+        console.log("Recendo nova informação... " + payload);
+
+        if ('ligar' == state) {
+            enviar = true;
+        } else if('desligar' == state) {
+            client.publish("sensor/light", "0");
+            enviar = false;
+        }
+    });
 
 const sendLightState = () => {
-    client.publish("sensor/light", lightState); // Send value for Broker 
-    console.log("Publishing light state: " + lightState); // Information Log about the temperature
+    if(enviar) {
+        client.publish("sensor/light", "1");  
+        console.log("Publishing state: ligado");
+    }
 };
 
-setInterval(sendLightState, 10000); // Execute on interval of 10sec
-
-// // Subscriber
-// subscriber.on("connect", () => {
-//     subscriber.subscribe("sensor/light-manager");
-// });
-
-client.on("message", (topic, payload) => {
-    lightState = new Boolean("topic:", payload);  // Set value from lightState
-});
+setInterval(sendLightState, 1000);

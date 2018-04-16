@@ -23,6 +23,18 @@ app
         resp.json({'status': manager.desligarArCondicionado()});    
     })
 
+    .get("/lampada", (req, resp) => {
+        resp.json({'status': manager.statusLuz()});    
+    })
+
+    .put("/lampada/ligar", (req, resp) => {
+        resp.json({'status': manager.ligarLuz()});    
+    })
+
+    .put("/lampada/desligar", (req, resp) => {
+        resp.json({'status': manager.desligarLuz()});    
+    })
+
     .listen(3000, ()=> {
         console.log("App running!");
     });
