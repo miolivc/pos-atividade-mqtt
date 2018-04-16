@@ -1,32 +1,31 @@
 
 const mqtt = require("mqtt");
 let client = mqtt.connect("ws://localhost:9001"); // Broke ports: 9001, 1883
-// const subscriber = mqtt.connect("ws://localhost:1883"); 
-let arState = false;
 
-// Publisher
+let enviar = false;
 
-client.on("connect", () => {
-    console.log("Connected to MQTT Broker: ar-condicionado");
-    client.subscribe("sensor/ar-manager");
-});
+client
+    .on("connect", () => {
+        console.log("Connected to MQTT Broker: ar-condicionado");
+        client.subscribe("sensor/ar-manager");
+    })
+    .on("message", (topic, payload) => {
+        let state = new String(payload);
+        console.log("Recendo nova informação... " + payload);
 
-client.on("message", (topic, payload) => {
-    arState = new Boolean("topic " + topic + ": " + payload);
-});
+        if ('ligar' == state) {
+            enviar = true;
+        } else if('desligar' == state) {
+            client.publish("sensor/ar", "0");
+            enviar = false;
+        }
+    });
 
 const sendLightState = () => {
-    client.publish("sensor/ar", arState);  
-    console.log("Publishing state: " + arState);
+    if(enviar) {
+        client.publish("sensor/ar", "1");  
+        console.log("Publishing state: ligado");
+    }
 };
 
-setInterval(sendLightState, 10000); 
-
-// Subscriber
-// subscriber.on("connect", () => {
-//     subscriber.subscribe("sensor/ar-manager");
-// });
-
-// client.on("message", (topic, payload) => {
-//     arState = new Boolean("topic " + topic + ": " + payload);
-// })
+setInterval(sendLightState, 1000);

@@ -2,25 +2,54 @@
 const mqtt = require("mqtt");
 let client = mqtt.connect("ws://localhost:9001");
 
-let temperatura;
+let temperatura, arState;
 
 client
     .on("connect", () => {
         client.subscribe("sensor/temperatura");
         // client.subscribe("sensor/light");
         // client.subscribe("sensor/light-manager");
-        // client.subscribe("sensor/ar");
+        client.subscribe("sensor/ar");
         // client.subscribe("sensor/ar-manager");
     })
     .on("message", (topic, payload) => {
         if (topic == "sensor/temperatura") {
             temperatura = parseInt(payload);
             console.log("Temperatura: " + payload);
+        } else if (topic == "sensor/ar"){
+            arState = parseInt(payload);
+            console.log("Ar : " + payload);
         }
     });
 
+// Exports
 module.exports.getTemperatura = () => {
     return temperatura;
+}
+
+module.exports.ligarArCondicionado = () => {
+    if (! arState) {
+        console.log("Ligando ar condicionado!");
+        client.publish("sensor/ar-manager", "ligar");
+        return "Ar condicionado está sendo ligado!"
+    }
+    return "Ar condicionado já estava ligado!"
+}
+
+module.exports.desligarArCondicionado = () => {
+    if (arState) {
+        console.log("Desligando ar-condicionado!");
+        client.publish("sensor/ar-manager", "desligar");
+        return "Ar condicionado está sendo desligado!"
+    }
+    return "Ar condicionado já estava desligado!"
+}
+
+module.exports.statusArCondicionado = () => {
+    if (! arState) {
+        return "Desligado!";
+    }
+    return "Ligado";
 }
 
 // // lamp
