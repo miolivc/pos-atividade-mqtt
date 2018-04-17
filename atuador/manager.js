@@ -1,7 +1,7 @@
 
 const mqtt = require("mqtt");
-// let client = mqtt.connect("ws://localhost:9001");
-let client = mqtt.connect("ws://host-broker:9001");
+let client = mqtt.connect("ws://localhost:9001");
+// let client = mqtt.connect("ws://host-broker:9001");
 
 let temperatura, arState, lightState;
 

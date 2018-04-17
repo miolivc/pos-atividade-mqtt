@@ -3,8 +3,8 @@
 
 import requests
 
-# baseUrl = "http://localhost:3000"
-baseUrl = "http://host-server:3000"
+baseUrl = "http://localhost:3000"
+# baseUrl = "http://host-server:3000"
 
 #   Temperatura
 def getTemperatura():
