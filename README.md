@@ -2,8 +2,8 @@
 
 ### 1. Executando localmente:
 **1.1. Para ativar o broker:**  
-    - `docker pull toke/mosquitto`
-    - `docker run -p 1883:1883 -p 9001:9001 -d --name broker toke/mosquitto`
+    - `docker pull toke/mosquitto`  
+    - `docker run -p 1883:1883 -p 9001:9001 -d --name broker toke/mosquitto`  
     -  `broker toke/mosquitto`  
 **1.2. Para executar os sensores:**
     - `npm install`  
