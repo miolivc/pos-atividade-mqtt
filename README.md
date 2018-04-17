@@ -14,6 +14,6 @@
     - `npm install`  
     - `npm start`  
 **1.4. Para Executar o cliente:**  
-    - Linux: `pip3 install requests && python3 main.py`  
+    - Linux: `sudo apt-get install python3-pip && pip3 install requests && python3 main.py`  
     - MacOS X: `brew install python3 python3-pip && python3 main.py`
  
