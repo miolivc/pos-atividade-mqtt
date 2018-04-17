@@ -15,6 +15,10 @@ app
         resp.json({'status': manager.statusArCondicionado()});    
     })
 
+    .get("/ar-condicionado/bin", (req, resp) => {
+        resp.json({'status': manager.statusArCondicionadoBin()});    
+    })
+
     .put("/ar-condicionado/ligar", (req, resp) => {
         resp.json({'status': manager.ligarArCondicionado()});    
     })
@@ -25,6 +29,10 @@ app
 
     .get("/lampada", (req, resp) => {
         resp.json({'status': manager.statusLuz()});    
+    })
+
+    .get("/lampada/bin", (req, resp) => {
+        resp.json({'status': manager.statusLuzBin()});    
     })
 
     .put("/lampada/ligar", (req, resp) => {

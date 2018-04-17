@@ -4,6 +4,7 @@ let client = mqtt.connect("ws://localhost:9001"); // Broke ports: 9001, 1883
 
 client.on("connect", () => {
     console.log("Connected to MQTT Broker");
+    sendTemp()
 });
 
 const getTemp = () => {
@@ -16,4 +17,4 @@ const sendTemp = () => {
     console.log("Publishing Temp: " + value); // Information Log about the temperature
 };
 
-setInterval(sendTemp, 3000); // Execute on interval of 3sec
+setInterval(sendTemp, 60000); // Execute on interval of 3sec

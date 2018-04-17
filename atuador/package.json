@@ -2,9 +2,10 @@
   "name": "atuador",
   "version": "1.0.0",
   "description": "",
-  "main": " ",
+  "main": "index.js",
   "scripts": {
-    "test": " "
+    "start": "node index.js",
+    "test": ""
   },
   "author": "",
   "license": "ISC",

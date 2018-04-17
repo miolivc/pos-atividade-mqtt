@@ -55,6 +55,12 @@ module.exports.statusArCondicionado = () => {
     return "Ar-condicionado Ligado!";
 }
 
+module.exports.statusArCondicionadoBin = () => {
+    if (! arState)
+        return "0";
+    return "1";
+}
+
 //Exports lampada
 module.exports.ligarLuz = () => {
     if (! lightState) {
@@ -79,4 +85,10 @@ module.exports.statusLuz = () => {
         return "Lampada desligada!";
     }
     return "Lampada ligada!";
+}
+
+module.exports.statusLuzBin = () => {
+    if (! lightState)
+        return "0";
+    return "1";
 }

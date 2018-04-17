@@ -8,6 +8,7 @@ client
     .on("connect", () => {
         console.log("Connected to MQTT Broker: ar-condicionado");
         client.subscribe("sensor/ar-manager");
+        client.publish("sensor/ar", "0");
     })
     .on("message", (topic, payload) => {
         let state = new String(payload);
