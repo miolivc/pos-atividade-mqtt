@@ -12,8 +12,8 @@
     - `node ar-condicionado.js`  
 **1.3. Para executar a REST API:**  
     - `npm install`  
-    - `node temperatura.js`  
+    - `npm start`  
 **1.4. Para Executar o cliente:**  
-    - Linux: `python3 main.py`  
-    - MacOS X: `brew install python3 && python3 main.py`
+    - Linux: `pip3 install requests && python3 main.py`  
+    - MacOS X: `brew install python3 python3-pip && python3 main.py`
  
