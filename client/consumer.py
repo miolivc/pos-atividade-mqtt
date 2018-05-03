@@ -18,11 +18,11 @@ def getStatusAr():
     return response.json()["status"]
 
 def ligarAr():
-    response = requests.put(baseUrl + "/lampada/ligar")
+    response = requests.put(baseUrl + "/ar-condicionado/ligar")
     return response.json()["status"]
 
 def desligarAr():
-    response = requests.put(baseUrl + "/lampada/desligar")
+    response = requests.put(baseUrl + "/ar-condicionado/desligar")
     return response.json()["status"]
 
 #   Lampada
