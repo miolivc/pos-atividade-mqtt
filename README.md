@@ -4,7 +4,7 @@
 Os arquivos na pasta *sensor* são simuladores de componentes que enviam informações ao broker mqtt, o atuador e REST API encontram-se na pasta *atuador* e a aplicação cliente que faz o controle dos dispositivos encontra-se na pasta *client*.  
 
 ### Requerimentos: 
-    -  docker; npm; node; python3; python3-pip 
+    docker; npm; node; python3; python3-pip 
 
 ### 1. Executando as aplicações:  
     
